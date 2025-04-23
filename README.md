@@ -33,7 +33,7 @@ The application includes three core modules: contactservice, appointmentservice,
 
 ## How to Run
 
-1. Clone this repository: git clone https://github.com/yourusername/JUnitTestingProject.git
+1. Clone this repository: git clone https://github.com/mkibler7/JUnitTestingProject.git
 2. Open the project in your preferred Java IDE (e.g. IntelliJ IDEA, Eclipse)
 3. Ensure JUnit 5 is installed (or included as a Maven/Gradle dependency)
 4. Run the test files:
