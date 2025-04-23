@@ -1,3 +1,13 @@
+Final Journal Answers:
+How can I ensure that my code, program, or software is functional and secure?
+By writing thorough unit and integration tests. Using static analysis tools can also be helpful. Following secure coding practices and regularaly updating needed dependencys is also important.
+
+How do I interpret user needs and incorporate them into a program?
+By gathering requirements through interviews and user stories. I prioritze the wanted features, and try to translate them into clear specifications and test cases.
+
+How do I approach designing software?
+I begin by trying to understand the user requirements, planning a system architecture, and possibly utilizing UML diagrams. I always try to keep modularity, scalability, and maintainablity in mind when designing software.
+
 # Contact & Appointment Management Java App
 
 A Java-based backend system created as part of my Software Testing coursework at Southern New Hampshire University. This project focuses on building and testing a contact and appointment service with strict validation logic and full JUnit test coverage.
