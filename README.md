@@ -1,4 +1,5 @@
 Final Journal Answers:
+
 How can I ensure that my code, program, or software is functional and secure?
 By writing thorough unit and integration tests. Using static analysis tools can also be helpful. Following secure coding practices and regularaly updating needed dependencys is also important.
 
