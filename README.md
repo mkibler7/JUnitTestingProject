@@ -1,61 +1,67 @@
-Final Journal Answers:
+# Contact, Task & Appointment Services (Java + JUnit 5)
 
-How can I ensure that my code, program, or software is functional and secure?
-By writing thorough unit and integration tests. Using static analysis tools can also be helpful. Following secure coding practices and regularaly updating needed dependencys is also important.
+A Java backend with three in-memory service modules, built test-first for the Software Testing course at Southern New Hampshire University. Each service enforces strict input validation and is covered by a JUnit 5 test suite.
 
-How do I interpret user needs and incorporate them into a program?
-By gathering requirements through interviews and user stories. I prioritze the wanted features, and try to translate them into clear specifications and test cases.
+**46 unit tests · all passing · 100% line and branch coverage of application code** (measured with JaCoCo)
 
-How do I approach designing software?
-I begin by trying to understand the user requirements, planning a system architecture, and possibly utilizing UML diagrams. I always try to keep modularity, scalability, and maintainablity in mind when designing software.
+## Modules
 
-# Contact & Appointment Management Java App
+| Module | Service operations | Validation rules |
+| --- | --- | --- |
+| `contactservice` | Add, delete, get, update first name / last name / phone / address | ID ≤ 10 chars and immutable; names ≤ 10 chars; phone must match `(XXX)XXX-XXXX`; address ≤ 30 chars; no nulls |
+| `taskservice` | Add, delete, get, update name / description | ID ≤ 10 chars and immutable; name ≤ 20 chars; description ≤ 50 chars; no nulls |
+| `appointmentservice` | Add, delete, get | ID ≤ 10 chars and immutable; date cannot be in the past; description ≤ 50 chars; no nulls |
 
-A Java-based backend system created as part of my Software Testing coursework at Southern New Hampshire University. This project focuses on building and testing a contact and appointment service with strict validation logic and full JUnit test coverage.
+Every service stores records in a `HashMap` keyed by ID, rejects duplicate IDs, and throws `IllegalArgumentException` for invalid input or missing records.
 
-The application includes three core modules: contactservice, appointmentservice, and taskservice. Each module is responsible for managing its own data with proper input validation and exception handling.
+## Testing approach
 
-## Features
+- **Model tests** (`ContactTest`, `TaskTest`, `AppointmentTest`) check valid construction plus every rejection path: null fields, values one past each length limit, a malformed phone number, and a past date.
+- **Service tests** (`*ServiceTest`) check add, get, update and delete, duplicate-ID rejection, deleting or reading a record that no longer exists, and that updates are re-validated.
+- `@BeforeEach` builds a fresh service for every test, so tests are isolated and can run in any order.
 
-- ✅ Create, read, update, and delete contact records
-- ✅ Add, delete, and retrieve appointment records
-- ✅ Enforce strict validation rules on input (e.g. phone format, name/address/description length, date constraints)
-- ✅ Exception handling for invalid operations
-- ✅ Fully tested using JUnit
-- ✅ Modular service architecture using Java classes
+## How to run
 
-## Tech Stack
+Requires Java 17 or newer. Maven does not need to be installed: the included Maven wrapper downloads it on first run.
 
-- **Java** – Core development language
-- **JUnit 5** – Unit testing framework
-- **HashMap** – Internal data storage for both services
-- **IntelliJ / Eclipse / Visual Studio Code** – IDE-agnostic development
+```bash
+git clone https://github.com/mkibler7/JUnitTestingProject.git
+cd JUnitTestingProject
+./mvnw test        # macOS / Linux
+mvnw.cmd test      # Windows
+```
 
-## What I Learned
+The coverage report is written to `target/site/jacoco/index.html`.
 
-- Writing testable Java services using encapsulation and validation
-- Structuring Java applications using service-based design
-- Mastering JUnit 5
-- Implementing exception handling and input validation
-- Validating real-world data inputs such as formatted phone numbers and date constraints
+![JUnit coverage report](https://github.com/user-attachments/assets/211c4e17-5df7-4239-9af0-beb7c403c516)
 
-## Screenshots
-![Junit Coverage Test](https://github.com/user-attachments/assets/211c4e17-5df7-4239-9af0-beb7c403c516)
+*The Eclipse screenshot above counts the test classes as well as the application code, so it shows a lower total. Lines inside `assertThrows` lambdas never finish by design, because the call throws first. Measured on the application code alone, coverage is 100%.*
 
-## How to Run
+## Project structure
 
-1. Clone this repository: git clone https://github.com/mkibler7/JUnitTestingProject.git
-2. Open the project in your preferred Java IDE (e.g. IntelliJ IDEA, Eclipse)
-3. Ensure JUnit 5 is installed (or included as a Maven/Gradle dependency)
-4. Run the test files:
-   - ContactTest.java
-   - ContactServiceTest.java
-   - AppointmentTest.java
-   - AppointmentServiceTest.java
-   - TaskTest.java
-   - TaskServiceTest.java
+```
+src/
+  main/java/{contactservice,taskservice,appointmentservice}/   service and model classes
+  test/java/{contactservice,taskservice,appointmentservice}/   JUnit 5 tests
+docs/                                                           course summary and reflection
+```
 
-## Contact Info
+## Tech stack
 
-Created by **Michael Kibler**  
+Java 17 · JUnit 5 · Maven (wrapper included) · JaCoCo
+
+## Reflection
+
+**How can I ensure that my code, program, or software is functional and secure?**
+By writing thorough unit and integration tests, using static analysis tools, following secure coding practices, and keeping dependencies up to date.
+
+**How do I interpret user needs and incorporate them into a program?**
+By gathering requirements through interviews and user stories, prioritizing the features users need, and translating them into clear specifications and test cases.
+
+**How do I approach designing software?**
+I start from the user requirements, plan the system architecture (sometimes with UML diagrams), and keep modularity, scalability and maintainability in mind throughout.
+
+## Contact
+
+Created by **Michael Kibler**
 [LinkedIn](https://www.linkedin.com/in/michael-kibler-11369519b/) | [Email](mailto:mpkibler7@gmail.com)
