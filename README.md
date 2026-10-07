@@ -1,5 +1,7 @@
 # Contact, Task & Appointment Services (Java + JUnit 5)
 
+[![Tests](https://github.com/mkibler7/JUnitTestingProject/actions/workflows/tests.yml/badge.svg)](https://github.com/mkibler7/JUnitTestingProject/actions/workflows/tests.yml)
+
 A Java backend with three in-memory service modules, built test-first for the Software Testing course at Southern New Hampshire University. Each service enforces strict input validation and is covered by a JUnit 5 test suite.
 
 **46 unit tests · all passing · 100% line and branch coverage of application code** (measured with JaCoCo)
