@@ -28,7 +28,7 @@ Requires Java 17 or newer. Maven does not need to be installed: the included Mav
 git clone https://github.com/mkibler7/JUnitTestingProject.git
 cd JUnitTestingProject
 ./mvnw test        # macOS / Linux
-mvnw.cmd test      # Windows
+.\mvnw.cmd test    # Windows (PowerShell)
 ```
 
 The coverage report is written to `target/site/jacoco/index.html`.
