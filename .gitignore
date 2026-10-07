@@ -1,0 +1,16 @@
+# Build output
+target/
+bin/
+
+# IDE files
+.metadata/
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
