@@ -22,12 +22,13 @@ Every service stores records in a `HashMap` keyed by ID, rejects duplicate IDs, 
 
 ## How to run
 
-Requires Java 17+ and Maven.
+Requires Java 17 or newer. Maven does not need to be installed: the included Maven wrapper downloads it on first run.
 
 ```bash
 git clone https://github.com/mkibler7/JUnitTestingProject.git
 cd JUnitTestingProject
-mvn test
+./mvnw test        # macOS / Linux
+mvnw.cmd test      # Windows
 ```
 
 The coverage report is written to `target/site/jacoco/index.html`.
@@ -47,7 +48,7 @@ docs/                                                           course summary a
 
 ## Tech stack
 
-Java 17 · JUnit 5 · Maven · JaCoCo
+Java 17 · JUnit 5 · Maven (wrapper included) · JaCoCo
 
 ## Reflection
 
