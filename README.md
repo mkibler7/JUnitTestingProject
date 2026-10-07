@@ -33,9 +33,7 @@ mvnw.cmd test      # Windows
 
 The coverage report is written to `target/site/jacoco/index.html`.
 
-![JUnit coverage report](https://github.com/user-attachments/assets/211c4e17-5df7-4239-9af0-beb7c403c516)
-
-*The Eclipse screenshot above counts the test classes as well as the application code, so it shows a lower total. Lines inside `assertThrows` lambdas never finish by design, because the call throws first. Measured on the application code alone, coverage is 100%.*
+![JaCoCo coverage report showing 100% instruction and branch coverage](docs/coverage-report.png)
 
 ## Project structure
 
