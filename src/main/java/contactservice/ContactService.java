@@ -16,7 +16,7 @@ public class ContactService {
 	
 	public void deleteContact(String contactID) {
 		if (!contacts.containsKey(contactID)) {
-			throw new IllegalArgumentException("contactID does't exist.");
+			throw new IllegalArgumentException("contactID doesn't exist.");
 		}
 		contacts.remove(contactID);
 	}

@@ -2,7 +2,6 @@ package taskservice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,23 +22,23 @@ class TaskServiceTest {
 	@Test
 	void testAddTask() {
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.addTask(task);
 		});
 		
 		Task retrieved = service.getTask("task1");
 	
-		assertTrue(retrieved.getTaskID().equals("task1"));
-		assertTrue(retrieved.getName().equals("Task Name"));
-		assertTrue(retrieved.getDescription().equals("Task Description."));
+		assertEquals("task1", retrieved.getTaskID());
+		assertEquals("Task Name", retrieved.getName());
+		assertEquals("Task Description.", retrieved.getDescription());
 	}
 	
 	@Test 
-	void testAddContactDuplicateID() {
+	void testAddTaskDuplicateID() {
 		
 		Task task2 = new Task("task1", "Task Name Duplicate", "Task Description Duplicate.");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.addTask(task2);
 		});
 	}
@@ -49,7 +48,7 @@ class TaskServiceTest {
 		
 		service.deleteTask("task1");
 	
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.deleteTask("task1");
 		});
 	}
@@ -59,8 +58,7 @@ class TaskServiceTest {
 		
 		service.updateName("task1", "New Task Name");
 		
-		assertTrue(task.getName().equals("New Task Name"));
-		
+		assertEquals("New Task Name", task.getName());
 	}
 
 	
@@ -69,8 +67,7 @@ class TaskServiceTest {
 		
 		service.updateDescription("task1", "New Task Description.");
 		
-		assertTrue(task.getDescription().equals("New Task Description."));
-		
+		assertEquals("New Task Description.", task.getDescription());
 	}
 
 	@Test 
@@ -78,9 +75,9 @@ class TaskServiceTest {
 		
 		Task returned = service.getTask("task1");
 		
-		assertTrue(returned.getTaskID().equals("task1"));	
-		assertTrue(returned.getName().equals("Task Name"));
-		assertTrue(returned.getDescription().equals("Task Description."));
+		assertEquals("task1", returned.getTaskID());	
+		assertEquals("Task Name", returned.getName());
+		assertEquals("Task Description.", returned.getDescription());
 	}
 		
 	@Test 
@@ -88,7 +85,7 @@ class TaskServiceTest {
 		
 		service.deleteTask("task1");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.getTask("task1");
 		});
 	}

@@ -1,13 +1,14 @@
 package appointmentservice;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Appointment {
-	String appointmentID;
-	Date date;
-	String description;
 	
-	Appointment(String appointmentID, Date date, String description) {
+	private final String appointmentID;
+	private LocalDateTime date;
+	private String description;
+	
+	Appointment(String appointmentID, LocalDateTime date, String description) {
 		
 		if (appointmentID == null || appointmentID.length() > 10) {
 			throw new IllegalArgumentException("Invalid Appointment ID.");
@@ -22,15 +23,15 @@ public class Appointment {
 		return this.appointmentID;
 	}
 	
-	public void setDate(Date date) {
-		if (date == null || date.before(new Date())) {
+	public void setDate(LocalDateTime date) {
+		if (date == null || date.isBefore(LocalDateTime.now())) {
 			throw new IllegalArgumentException("Invalid date.");
 		}
 		this.date = date;
 		
 	}
 	
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 	

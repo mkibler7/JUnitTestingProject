@@ -1,9 +1,10 @@
 package taskservice;
 
 public class Task {
-	String taskID;
-	String name;
-	String description;
+	
+	private final String taskID;
+	private String name;
+	private String description;
 	
 	Task(String taskID, String name, String description) {
 		

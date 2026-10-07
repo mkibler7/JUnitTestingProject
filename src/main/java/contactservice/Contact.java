@@ -3,7 +3,6 @@ package contactservice;
 
 public class Contact {
 	
-	
 	private final String contactID;
 	private String firstName;
 	private String lastName;
@@ -13,18 +12,14 @@ public class Contact {
 	Contact (String contactID, String firstName, String lastName, String phone, String address) {
 		
 		// Validate contactID using project requirements
-		
 		if (contactID == null || contactID.length() > 10) {
 			throw new IllegalArgumentException("Invalid Contact ID.");
 		}
 		this.contactID = contactID;
-		
-		
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPhone(phone);
 		setAddress(address);
-		
 	}
 
 	public String getContactID() {											// contactID getter, no setter as variable is final

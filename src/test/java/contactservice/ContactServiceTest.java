@@ -2,8 +2,6 @@ package contactservice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +24,7 @@ class ContactServiceTest {
 		
 		
 		Contact retrieved = service.getContact("contact1");
-		assertTrue(retrieved.getFirstName().equals("Michael"));
+		assertEquals("Michael", retrieved.getFirstName());
 	}
 	
 	@Test 
@@ -34,7 +32,7 @@ class ContactServiceTest {
 		
 		Contact contact2 = new Contact("contact1", "Paul", "Smith", "(143)456-7890", "1052 Lily Ave.");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.addContact(contact2);
 		});
 	}
@@ -44,7 +42,7 @@ class ContactServiceTest {
 	
 		service.deleteContact("contact1");
 	
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.deleteContact("contact1");
 		});
 	}
@@ -54,8 +52,7 @@ class ContactServiceTest {
 		
 		service.updateFirstName("contact1", "Paul");
 		
-		assertTrue(contact.getFirstName().equals("Paul"));
-		
+		assertEquals("Paul", contact.getFirstName());
 	}
 	
 	@Test
@@ -63,8 +60,7 @@ class ContactServiceTest {
 	
 		service.updateLastName("contact1", "Roger");
 		
-		assertTrue(contact.getLastName().equals("Roger"));
-		
+		assertEquals("Roger", contact.getLastName());
 	}
 	
 	@Test
@@ -72,8 +68,7 @@ class ContactServiceTest {
 		
 		service.updatePhone("contact1", "(714)321-4567");
 		
-		assertTrue(contact.getPhone().equals("(714)321-4567"));
-		
+		assertEquals("(714)321-4567", contact.getPhone());
 	}
 	
 	@Test
@@ -81,8 +76,7 @@ class ContactServiceTest {
 		
 		service.updateAddress("contact1", "1234 Helmet St.");
 		
-		assertTrue(contact.getAddress().equals("1234 Helmet St."));
-		
+		assertEquals("1234 Helmet St.", contact.getAddress());
 	}
 	
 	@Test 
@@ -90,10 +84,10 @@ class ContactServiceTest {
 		
 		Contact returned = service.getContact("contact1");
 		
-		assertTrue(returned.getFirstName().equals("Michael"));	
-		assertTrue(returned.getLastName().equals("Kibler"));
-		assertTrue(returned.getPhone().equals("(714)123-4567"));
-		assertTrue(returned.getAddress().equals("9234 Element Ave."));
+		assertEquals("Michael", returned.getFirstName());	
+		assertEquals("Kibler", returned.getLastName());
+		assertEquals("(714)123-4567", returned.getPhone());
+		assertEquals("9234 Element Ave.", returned.getAddress());
 	}
 		
 	@Test 
@@ -101,7 +95,7 @@ class ContactServiceTest {
 		
 		service.deleteContact("contact1");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.getContact("contact1");
 		});
 	}
