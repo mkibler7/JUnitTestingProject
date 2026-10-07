@@ -3,9 +3,7 @@ package appointmentservice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Date;
-
-import org.junit.jupiter.api.Assertions;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +11,13 @@ class AppointmentServiceTest {
 	
 	AppointmentService service;
 	Appointment appointment;
+	LocalDateTime futureDate;
 	
 	@BeforeEach
 	void setup() {
 		service = new AppointmentService();
-		appointment = new Appointment("app1", new Date(128, 4, 6), "Appointment Description.");
+		futureDate = LocalDateTime.now().plusDays(30);
+		appointment = new Appointment("app1", futureDate, "Appointment Description.");
 	}
 
 
@@ -26,24 +26,24 @@ class AppointmentServiceTest {
 		
 		service.addAppointment(appointment);
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.addAppointment(appointment);
 		});
 		
 		Appointment retrieved = service.getAppointment("app1");
 	
-		assertTrue(retrieved.getAppointmentID().equals("app1"));
-		assertTrue(retrieved.getDate().equals(new Date(128, 4, 6)));
-		assertTrue(retrieved.getDescription().equals("Appointment Description."));
+		assertEquals("app1", retrieved.getAppointmentID());
+		assertEquals(futureDate, retrieved.getDate());
+		assertEquals("Appointment Description.", retrieved.getDescription());
 	}
 	
 	@Test 
 	void testAddAppointmentDuplicateID() {
 		service.addAppointment(appointment);
 		
-		Appointment appointment2 = new Appointment("app1", new Date(128, 4, 6), "Appointment Description.");
+		Appointment appointment2 = new Appointment("app1", futureDate, "Appointment Description.");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.addAppointment(appointment2);
 		});
 	}
@@ -54,7 +54,7 @@ class AppointmentServiceTest {
 		
 		service.deleteAppointment("app1");
 	
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.deleteAppointment("app1");
 		});
 	}
@@ -68,19 +68,19 @@ class AppointmentServiceTest {
 		
 		Appointment returned = service.getAppointment("app1");
 		
-		assertTrue(returned.getAppointmentID().equals("app1"));	
-		assertTrue(returned.getDate().equals(new Date(128, 4, 6)));
-		assertTrue(returned.getDescription().equals("Appointment Description."));
+		assertEquals("app1", returned.getAppointmentID());
+		assertEquals(futureDate, returned.getDate());
+		assertEquals("Appointment Description.", returned.getDescription());
 	}
 		
 	@Test 
-	void testGetTaskIsNull() {
+	void testGetDeletedAppointmentThrows() {
 
 		service.addAppointment(appointment);
 		
 		service.deleteAppointment("app1");
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			service.getAppointment("app1");
 		});
 	}
